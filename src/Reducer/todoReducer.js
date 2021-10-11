@@ -6,6 +6,8 @@ export const todoListReducer = (state = [], action) => {
       return [...state, {id: uuidv4(), text: action.payload, done: false}]
     case 'DEL_TODO':
       return state.filter(i => i.id !== action.payload)
+    case 'DONE_TODO':
+      return state.map(z => z.id === action.payload ? {...z, done: !false} : z)
     default:
       return state
   }
