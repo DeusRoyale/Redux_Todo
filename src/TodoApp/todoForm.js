@@ -1,14 +1,17 @@
 import React from "react"
 import { Form, Button } from "react-bootstrap"
 import useInputChange from "../hooks/inputChange"
+import { useDispatch } from 'react-redux'
+import { addTodo } from "../Actions/todoAction"
 
-const TodoForm = ({ todoTask }) => {
+const TodoForm = () => {
   const [state, setState, reset] = useInputChange("")
+
+  const dispatch = useDispatch()
 
   const submitHandle = (e) => {
     e.preventDefault()
-    //console.log(state)
-    todoTask(state)
+    dispatch(addTodo(state))
     reset()
   }
 

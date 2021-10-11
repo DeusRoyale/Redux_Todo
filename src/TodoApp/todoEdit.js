@@ -2,14 +2,11 @@ import React from "react"
 import useInputChange from "../hooks/inputChange"
 import { Form } from "react-bootstrap"
 
-const TodoEdit = ({ task, id, toggle, edit }) => {
-  const [state, changeInput] = useInputChange(task)
+const TodoEdit = () => {
+  const [state, changeInput] = useInputChange()
 
   const submitHandle = (e) => {
     e.preventDefault()
-    console.log(`edited ${task} to ${state}`)
-    toggle()
-    edit(id, state)
   }
 
   return (

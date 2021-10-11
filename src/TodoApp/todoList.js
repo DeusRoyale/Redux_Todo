@@ -1,20 +1,17 @@
 import React from "react"
 import { Card } from "react-bootstrap"
 import TodoTask from "./todoTask"
+import { useSelector } from 'react-redux'
 
-const TodoList = ({ listOfTasks, removeTask, completed, edit }) => {
+const TodoList = () => {
+
+  const addedTodo = useSelector(state => state.todoList)
+  
+
   return (
     <div>
       <Card style={{ width: "18rem" }} bg="warning">
-        {listOfTasks.map((i) => (
-          <TodoTask
-            task={i}
-            key={i.id}
-            removeTask={removeTask}
-            completed={completed}
-            edit={edit}
-          />
-        ))}
+        {addedTodo.map(i => <TodoTask key={i.id} task={i}/>)}
       </Card>
     </div>
   )

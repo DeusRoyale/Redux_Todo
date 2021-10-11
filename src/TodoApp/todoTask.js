@@ -2,33 +2,20 @@ import React from "react"
 import { ListGroup, Button } from "react-bootstrap"
 import useToggler from "../hooks/toggler"
 import TodoEdit from "./todoEdit"
+import { useDispatch } from "react-redux"
+import { deleteTodo } from "../Actions/todoAction"
 
-const TodoTask = ({ task, removeTask, completed, edit }) => {
+const TodoTask = ({task}) => {
   const [toggle, setToggle] = useToggler()
 
-  const removeTaskHandle = () => {
-    removeTask(task)
-  }
-
-  const editTaskHandle = () => {
-    setToggle()
-    console.log(toggle)
-  }
-
-  const checkBox = () => {
-    completed(task)
-  }
+  const dispatch = useDispatch()
 
   return (
     <>
       {toggle ? 
         (
-        <TodoEdit
-          task={task.task}
-          id={task.id}
-          toggle={setToggle}
-          edit={edit}
-        />
+        <TodoEdit/>
+
       ) 
 
         :
@@ -38,12 +25,10 @@ const TodoTask = ({ task, removeTask, completed, edit }) => {
           <ListGroup.Item
             style={{ textDecoration: task.done ? "line-through" : null }}
           >
-            <input type="checkbox" checked={task.done} onChange={checkBox} />
-
-            {task.task}
-
-            <Button onClick={removeTaskHandle}>❌</Button>
-            <Button onClick={editTaskHandle}>📝</Button>
+            <input type="checkbox" checked={false}/>
+              {task.text}{' '}
+            <Button onClick={() => dispatch(deleteTodo(task.id))}>❌</Button>
+            <Button onClick={setToggle}>📝</Button>
           </ListGroup.Item>
         </ListGroup>
       )}
