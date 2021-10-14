@@ -13,7 +13,7 @@ const TodoTask = ({ task }) => {
   return (
     <>
       {toggle ? (
-        <TodoEdit />
+        <TodoEdit task={task} toggle={setToggle}/>
       ) : (
         <ListGroup>
           <ListGroup.Item
