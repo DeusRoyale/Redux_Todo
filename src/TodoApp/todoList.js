@@ -1,11 +1,15 @@
-import React from "react"
+import React, {useEffect} from "react"
 import { Card } from "react-bootstrap"
 import TodoTask from "./todoTask"
 import { useSelector } from 'react-redux'
 
 const TodoList = () => {
 
-  const addedTodo = useSelector(state => state.todoList)
+  var addedTodo = useSelector(state => state.todoList)
+  
+  useEffect(() => {
+    localStorage.setItem('key', JSON.stringify(addedTodo))
+  }, [addedTodo])
   
 
   return (
